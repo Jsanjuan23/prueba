@@ -1,12 +1,10 @@
 import React from 'react'
 
 import logo from '../medicina.jpg'
-import swal from 'sweetalert'
 import Analisis from './Analisis'
 import Registro from './Registro'
 import Principal from './Principal'
 const Login = () => {
-    const [lista, setLista] = React.useState([])
     const [cc, setCc] = React.useState('')
     const [pass, setPass] = React.useState('')
     const [val, setVal] = React.useState(true)
