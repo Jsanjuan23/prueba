@@ -14,23 +14,7 @@ const Login = () => {
     const [reg, setReg] = React.useState(false)
     
  
-    React.useEffect(()=>{
-    const leer=async()=>{
-        try {
-            const db = firebase.firestore()
-            const data = await db.collection('pacientes').get()
-            const arraydata = data.docs.map(item =>(
-              {
-              id: item.id, ...item.data()
-              }
-            ))
-            setLista(arraydata)
-          } catch (error) {
-            console.log(error)        
-          }
-        }
-        leer();
-      })
+    
 
     const buscar = async() =>{
         if(!cc.trim() || !pass.trim()){
