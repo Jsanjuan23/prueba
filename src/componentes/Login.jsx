@@ -13,48 +13,7 @@ const Login = () => {
     const [atras, setAtras] = React.useState(false)
     const [reg, setReg] = React.useState(false)
     
- 
-    
 
-    const buscar = async() =>{
-        if(!cc.trim() || !pass.trim()){
-            swal({
-              title: "Error",
-              text: "No puede dejaaar ningún campo vacio.",
-              icon: "error",
-              button: "Aceptar"
-            })
-            return
-        }
-      
-      try{
-        
-        const user = lista.find(dato => dato.id === cc);
-
-        if (user.id === cc && user.clave===pass){
-          setVal(false)
-        }else{
-         
-            swal({
-                title: "Error",
-                text: "Por favor, verifique la constraseña ingresada.",
-                icon: "error",
-                button: "Aceptar"
-              })
-              return
-          }
-        
-      }catch(error){
-        swal({
-          title: "Error",
-          text: "El usuario ingresado no existe.",
-          icon: "error",
-          button: "Aceptar"
-        })
-      }
-
-      
-      }
    const validar = () =>{
   
     setVal(false)
@@ -115,7 +74,7 @@ const Login = () => {
                   <br />
                   <input type="password" placeholder="Contraseña" class="form-control"value={pass} onChange={(e)=> setPass(e.target.value)}/>
                   <br />
-                  <input type="button" class="btn btn-secondary" value="Ingresar" onClick={buscar}/>
+                  <input type="button" class="btn btn-secondary" value="Ingresar"/>
                   <br /><br />
      
   
