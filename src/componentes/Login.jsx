@@ -1,5 +1,5 @@
 import React from 'react'
-import {firebase} from '../firebase'
+
 import logo from '../medicina.jpg'
 import swal from 'sweetalert'
 import Analisis from './Analisis'
