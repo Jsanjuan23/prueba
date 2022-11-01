@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {firebase} from '../firebase'
 import logo from '../medicina.jpg'
 import Analisis from './Analisis'
 import Registro from './Registro'
@@ -12,6 +12,23 @@ const Login = () => {
     const [reg, setReg] = React.useState(false)
     
 
+    React.useEffect(()=>{
+      const leer=async()=>{
+          try {
+              const db = firebase.firestore()
+              const data = await db.collection('pacientes').get()
+              const arraydata = data.docs.map(item =>(
+                {
+                id: item.id, ...item.data()
+                }
+              ))
+              alert(arraydata)
+            } catch (error) {
+              console.log(error)        
+            }
+          }
+          leer();
+        })
    const validar = () =>{
   
     setVal(false)
