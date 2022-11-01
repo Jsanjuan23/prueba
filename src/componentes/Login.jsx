@@ -1,10 +1,12 @@
 import React from 'react'
+import swal from 'sweetalert'
 import {firebase} from '../firebase'
 import logo from '../medicina.jpg'
 import Analisis from './Analisis'
 import Registro from './Registro'
 import Principal from './Principal'
 const Login = () => {
+  const [lista, setLista] = React.useState([])
     const [cc, setCc] = React.useState('')
     const [pass, setPass] = React.useState('')
     const [val, setVal] = React.useState(true)
@@ -22,13 +24,53 @@ const Login = () => {
                 id: item.id, ...item.data()
                 }
               ))
-              alert(arraydata)
+              setLista(arraydata)
             } catch (error) {
               console.log(error)        
             }
           }
           leer();
         })
+        const buscar = async() =>{
+          if(!cc.trim() || !pass.trim()){
+              swal({
+                title: "Error",
+                text: "No puede dejaaar ningún campo vacio.",
+                icon: "error",
+                button: "Aceptar"
+              })
+              return
+          }
+        
+        try{
+          
+          const user = lista.find(dato => dato.id === cc);
+  
+          if (user.id === cc && user.clave===pass){
+            setVal(false)
+          }else{
+           
+              swal({
+                  title: "Error",
+                  text: "Por favor, verifique la constraseña ingresada.",
+                  icon: "error",
+                  button: "Aceptar"
+                })
+                return
+            }
+          
+        }catch(error){
+          swal({
+            title: "Error",
+            text: "El usuario ingresado no existe.",
+            icon: "error",
+            button: "Aceptar"
+          })
+        }
+  
+        
+        }
+
    const validar = () =>{
   
     setVal(false)
@@ -89,7 +131,7 @@ const Login = () => {
                   <br />
                   <input type="password" placeholder="Contraseña" class="form-control"value={pass} onChange={(e)=> setPass(e.target.value)}/>
                   <br />
-                  <input type="button" class="btn btn-secondary" value="Ingresar"/>
+                  <input type="button" class="btn btn-secondary" value="Ingresar" onClick={buscar}/>
                   <br /><br />
      
   
